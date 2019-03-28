@@ -31,6 +31,6 @@ public class Documento extends AdministracionElectronicaBase {
 }
 	@Override
 	public String toString() {
-		return "Documento " + id + " nombre: " + nombre;
+		return "Documento  " + id + " nombre:  " + nombre;
 	}
 }
