@@ -21,6 +21,7 @@ public class ServicioDocumentoImplTest {
 	
 	RepositorioDocumento repositorioDocumento; 
 	ServicioDocumentoImpl servicioDocumento;
+	Documento documento = mock(Documento.class);
 	
 	@Before
 	public void inicializarAntesDeCadaTest() {
@@ -39,16 +40,13 @@ public class ServicioDocumentoImplTest {
 		assertEquals(listaDevueltaPorElRepositorio, resultado);
 		
 	}
+	
 	@Test
 	public void deberiaModificarUnDocumento() {
 		
-		Documento documento = mock(Documento.class);
-		Documento documentoDevueltoPorElRepositorio = mock(Documento.class);
-		when(repositorioDocumento.modificarDocumento(documento)).thenReturn(documentoDevueltoPorElRepositorio);
+		servicioDocumento.modificarDocumento(documento);
 		
-		final Documento resultado = servicioDocumento.modificarDocumento(documento);
-		
-		assertEquals(documentoDevueltoPorElRepositorio, resultado);
+		verify(this.repositorioDocumento).modificarDocumento(documento);
 			
 	}
 	
@@ -58,5 +56,13 @@ public class ServicioDocumentoImplTest {
 		this.servicioDocumento.eliminarDocumento(20);
 		
 		verify(this.repositorioDocumento).eliminarDocumento(20);
+	}
+	@Test
+	public void deberiaAlmacenarDocumentos() {
+		
+		when(this.repositorioDocumento.getSiguienteId()).thenReturn(22);
+		
+		final Documento resultado = this.servicioDocumento.altaDocumento(documento);
+		
 	}
 }

@@ -20,20 +20,21 @@ public class ServicioDocumentoImpl implements ServicioDocumento {
 	}
 		
 	@Override
-	public Documento altaDocumento(Documento documento) {
+	public void altaDocumento(Documento documento) {
 		
 		final int siguienteId = repositorioDocumento.getSiguienteId();
 		final Date fechaActual = new Date();
 		
 		Documento documentoModificado = new Documento(siguienteId, documento.getNombre(), documento.getUsuario(), fechaActual, documento.getTipoDocumento());
 		
-		return repositorioDocumento.altaDocumento(documentoModificado);
+		repositorioDocumento.altaDocumento(documentoModificado);
+		documentoModificado;
 	}
 
 	@Override
-	public Documento modificarDocumento(Documento documento) {
+	public void modificarDocumento(Documento documento) {
 		
-		return repositorioDocumento.modificarDocumento(documento);
+		repositorioDocumento.modificarDocumento(documento);
 	}
 
 	@Override
